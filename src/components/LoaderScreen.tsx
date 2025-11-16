@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
 interface LoaderScreenProps {
   onComplete: () => void;
@@ -10,39 +10,35 @@ const LoaderScreen: React.FC<LoaderScreenProps> = ({ onComplete }) => {
 
   useEffect(() => {
     const timers = [
-      setTimeout(() => setStage(1), 200), // L drops
+      setTimeout(() => setStage(1), 200),      // L drops
       setTimeout(() => {
         setScreenShake(true);
         setTimeout(() => setScreenShake(false), 200);
       }, 800),
-      setTimeout(() => setStage(2), 1000), // L landed
-      setTimeout(() => setStage(3), 1400), // R drops
+      setTimeout(() => setStage(2), 1000),     // L landed
+      setTimeout(() => setStage(3), 1400),     // R drops
       setTimeout(() => {
         setScreenShake(true);
         setTimeout(() => setScreenShake(false), 200);
       }, 2000),
-      setTimeout(() => setStage(4), 2200), // R landed
-      setTimeout(() => setStage(5), 2600), // P drops
+      setTimeout(() => setStage(4), 2200),     // R landed
+      setTimeout(() => setStage(5), 2600),     // P drops
       setTimeout(() => {
         setScreenShake(true);
         setTimeout(() => setScreenShake(false), 200);
       }, 3200),
-      setTimeout(() => setStage(6), 3400), // P landed
-      setTimeout(() => setStage(7), 3800), // Merge to card
-      setTimeout(() => setStage(8), 4400), // Pulse
-      setTimeout(() => setStage(9), 5000), // Fade out
-      setTimeout(onComplete, 5500),
+      setTimeout(() => setStage(6), 3400),     // P landed
+      setTimeout(() => setStage(7), 3800),     // Merge to card
+      setTimeout(() => setStage(8), 4400),     // Pulse
+      setTimeout(() => setStage(9), 5000),     // Fade out
+      setTimeout(onComplete, 5500)
     ];
 
     return () => timers.forEach(clearTimeout);
   }, [onComplete]);
 
   return (
-    <div
-      className={`fixed inset-0 z-50 bg-gradient-to-b from-gray-800 to-gray-900 flex items-center justify-center overflow-hidden transition-transform duration-200 ${
-        screenShake ? "animate-shake" : ""
-      }`}
-    >
+    <div className={`fixed inset-0 z-50 bg-gradient-to-b from-gray-800 to-gray-900 flex items-center justify-center overflow-hidden transition-transform duration-200 ${screenShake ? 'animate-shake' : ''}`}>
       {/* Dust particles on impact */}
       {(stage === 2 || stage === 4 || stage === 6) && (
         <div className="absolute inset-0 pointer-events-none">
@@ -51,11 +47,11 @@ const LoaderScreen: React.FC<LoaderScreenProps> = ({ onComplete }) => {
               key={i}
               className="absolute w-2 h-2 bg-gray-600 rounded-full opacity-60"
               style={{
-                left: stage === 2 ? "35%" : stage === 4 ? "50%" : "65%",
-                top: "55%",
+                left: stage === 2 ? '35%' : stage === 4 ? '50%' : '65%',
+                top: '55%',
                 animation: `dustParticle 0.6s ease-out forwards`,
                 animationDelay: `${i * 0.05}s`,
-                transform: `rotate(${i * 45}deg)`,
+                transform: `rotate(${i * 45}deg)`
               }}
             />
           ))}
@@ -70,22 +66,13 @@ const LoaderScreen: React.FC<LoaderScreenProps> = ({ onComplete }) => {
             <div className="relative flex flex-col items-center">
               <div
                 className={`text-9xl font-black transition-all duration-500 ${
-                  stage >= 1 ? "opacity-100" : "opacity-0"
+                  stage >= 1 ? 'opacity-100' : 'opacity-0'
                 }`}
                 style={{
-                  color: "#FF6B35",
-                  transform:
-                    stage === 1
-                      ? "translateY(-400px)"
-                      : stage >= 2
-                      ? "translateY(0)"
-                      : "translateY(-400px)",
-                  transition:
-                    stage === 1
-                      ? "transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)"
-                      : "none",
-                  textShadow:
-                    stage >= 2 ? "0 8px 20px rgba(255, 107, 53, 0.3)" : "none",
+                  color: '#FF6B35',
+                  transform: stage === 1 ? 'translateY(-400px)' : stage >= 2 ? 'translateY(0)' : 'translateY(-400px)',
+                  transition: stage === 1 ? 'transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)' : 'none',
+                  textShadow: stage >= 2 ? '0 8px 20px rgba(255, 107, 53, 0.3)' : 'none'
                 }}
               >
                 L
@@ -94,13 +81,7 @@ const LoaderScreen: React.FC<LoaderScreenProps> = ({ onComplete }) => {
               {stage >= 2 && (
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
                   <div className="w-12 h-12 rounded-full bg-gray-900 border-4 border-gray-700 flex items-center justify-center shadow-lg animate-fade-in">
-                    <div
-                      className={`w-3 h-3 rounded-full ${
-                        stage >= 2
-                          ? "bg-orange-500 animate-blink"
-                          : "bg-gray-600"
-                      }`}
-                    />
+                    <div className={`w-3 h-3 rounded-full ${stage >= 2 ? 'bg-orange-500 animate-blink' : 'bg-gray-600'}`} />
                   </div>
                 </div>
               )}
@@ -112,21 +93,10 @@ const LoaderScreen: React.FC<LoaderScreenProps> = ({ onComplete }) => {
                 <div
                   className="text-6xl sm:text-7xl md:text-9xl font-black"
                   style={{
-                    color: "#4A90E2",
-                    transform:
-                      stage === 3
-                        ? "translateY(-400px)"
-                        : stage >= 4
-                        ? "translateY(0)"
-                        : "translateY(-400px)",
-                    transition:
-                      stage === 3
-                        ? "transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)"
-                        : "none",
-                    textShadow:
-                      stage >= 4
-                        ? "0 8px 20px rgba(74, 144, 226, 0.3)"
-                        : "none",
+                    color: '#4A90E2',
+                    transform: stage === 3 ? 'translateY(-400px)' : stage >= 4 ? 'translateY(0)' : 'translateY(-400px)',
+                    transition: stage === 3 ? 'transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)' : 'none',
+                    textShadow: stage >= 4 ? '0 8px 20px rgba(74, 144, 226, 0.3)' : 'none'
                   }}
                 >
                   R
@@ -140,21 +110,10 @@ const LoaderScreen: React.FC<LoaderScreenProps> = ({ onComplete }) => {
                 <div
                   className="text-6xl sm:text-7xl md:text-9xl font-black"
                   style={{
-                    color: "#50C878",
-                    transform:
-                      stage === 5
-                        ? "translateY(-400px)"
-                        : stage >= 6
-                        ? "translateY(0)"
-                        : "translateY(-400px)",
-                    transition:
-                      stage === 5
-                        ? "transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)"
-                        : "none",
-                    textShadow:
-                      stage >= 6
-                        ? "0 8px 20px rgba(80, 200, 120, 0.3)"
-                        : "none",
+                    color: '#50C878',
+                    transform: stage === 5 ? 'translateY(-400px)' : stage >= 6 ? 'translateY(0)' : 'translateY(-400px)',
+                    transition: stage === 5 ? 'transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)' : 'none',
+                    textShadow: stage >= 6 ? '0 8px 20px rgba(80, 200, 120, 0.3)' : 'none'
                   }}
                 >
                   P
@@ -164,55 +123,22 @@ const LoaderScreen: React.FC<LoaderScreenProps> = ({ onComplete }) => {
           </div>
         ) : (
           // Merged card/logo
-          <div
-            className={`flex justify-center items-center transition-all duration-700 ${
-              stage === 9 ? "opacity-0 scale-110" : "opacity-100"
-            }`}
-          >
-            <div
-              className={`relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl p-12 border-4 border-gray-700 shadow-2xl transition-all duration-500 ${
-                stage >= 7 ? "scale-100" : "scale-0"
-              }`}
-            >
+          <div className={`flex justify-center items-center transition-all duration-700 ${stage === 9 ? 'opacity-0 scale-110' : 'opacity-100'}`}>
+            <div className={`relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl p-12 border-4 border-gray-700 shadow-2xl transition-all duration-500 ${stage >= 7 ? 'scale-100' : 'scale-0'}`}>
               <div className="flex items-center gap-4">
                 <div className="relative">
-                  <span
-                    className="text-8xl font-black"
-                    style={{ color: "#FF6B35" }}
-                  >
-                    L
-                  </span>
+                  <span className="text-8xl font-black" style={{ color: '#FF6B35' }}>L</span>
                   {/* Camera with pulse */}
                   <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                    <div
-                      className={`w-12 h-12 rounded-full bg-gray-900 border-4 border-gray-700 flex items-center justify-center shadow-lg ${
-                        stage >= 8 ? "animate-pulse-ring" : ""
-                      }`}
-                    >
-                      <div
-                        className={`w-3 h-3 rounded-full ${
-                          stage >= 8
-                            ? "bg-orange-500 animate-pulse-glow"
-                            : "bg-orange-500"
-                        }`}
-                      />
+                    <div className={`w-12 h-12 rounded-full bg-gray-900 border-4 border-gray-700 flex items-center justify-center shadow-lg ${stage >= 8 ? 'animate-pulse-ring' : ''}`}>
+                      <div className={`w-3 h-3 rounded-full ${stage >= 8 ? 'bg-orange-500 animate-pulse-glow' : 'bg-orange-500'}`} />
                     </div>
                   </div>
                 </div>
-                <span
-                  className="text-8xl font-black"
-                  style={{ color: "#4A90E2" }}
-                >
-                  R
-                </span>
-                <span
-                  className="text-8xl font-black"
-                  style={{ color: "#50C878" }}
-                >
-                  P
-                </span>
+                <span className="text-8xl font-black" style={{ color: '#4A90E2' }}>R</span>
+                <span className="text-8xl font-black" style={{ color: '#50C878' }}>P</span>
               </div>
-
+              
               {/* Light sweep effect */}
               {stage >= 8 && (
                 <div className="absolute inset-0 overflow-hidden rounded-2xl sm:rounded-3xl">
