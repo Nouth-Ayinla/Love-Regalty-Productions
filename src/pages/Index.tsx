@@ -39,7 +39,7 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Navigation />
 
-      {/* Hero Section */}
+      {/* Hero Section - Mobile Optimized */}
       <section
         ref={heroRef}
         className="relative min-h-screen flex items-center justify-center bg-background overflow-hidden"
@@ -47,10 +47,10 @@ const Index = () => {
           transform: `translateY(${heroOffset}px)`,
         }}
       >
-        <div className="container mx-auto px-4 sm:px-6 text-center">
-          <div className="space-y-16">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="space-y-12 sm:space-y-16">
             <div
-              className="space-y-8 transition-all duration-1000 ease-out"
+              className="space-y-6 sm:space-y-8 transition-all duration-1000 ease-out text-center"
               style={{
                 opacity: textOpacity,
                 transform: `scale(${textScale}) translateY(${scrollY * 0.2}px)`,
@@ -58,14 +58,14 @@ const Index = () => {
             >
               <h1
                 ref={headingRef}
-                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight bg-gradient-to-r from-cyan-500 via-purple-500 to-orange-500 bg-clip-text text-transparent animate-fade-in"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold leading-tight tracking-tight bg-gradient-to-r from-cyan-500 via-purple-500 to-orange-500 bg-clip-text text-transparent animate-fade-in px-2"
               >
                 Hello. We're Love Regality Productions
               </h1>
 
               <p
                 ref={paragraphRef}
-                className="text-xl sm:text-2xl md:text-3xl font-medium leading-relaxed text-foreground max-w-4xl mx-auto animate-fade-in"
+                className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium leading-relaxed text-foreground max-w-4xl mx-auto animate-fade-in px-2"
                 style={{ animationDelay: "0.3s" }}
               >
                 We make commercials. The kind people like.
@@ -163,30 +163,30 @@ const Index = () => {
             </CarouselItem>
           </CarouselContent>
 
-          <CarouselPrevious className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 z-30 bg-white/20 border-white/40 text-white hover:bg-white/30" />
-          <CarouselNext className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-30 bg-white/20 border-white/40 text-white hover:bg-white/30" />
+          <CarouselPrevious className="absolute left-2 sm:left-4 md:left-8 top-1/2 -translate-y-1/2 z-30 bg-white/20 border-white/40 text-white hover:bg-white/30 h-8 w-8 sm:h-10 sm:w-10" />
+          <CarouselNext className="absolute right-2 sm:right-4 md:right-8 top-1/2 -translate-y-1/2 z-30 bg-white/20 border-white/40 text-white hover:bg-white/30 h-8 w-8 sm:h-10 sm:w-10" />
         </Carousel>
 
         <div className="relative z-20 container mx-auto px-4 sm:px-6 text-center">
-          <div className="space-y-12 sm:space-y-16 animate-slide-up">
-            <div className="space-y-6 sm:space-y-8">
-              <h2 className="text-3xl sm:text-5xl md:text-7xl font-bold text-white leading-tight tracking-tight">
+          <div className="space-y-8 sm:space-y-12 md:space-y-16 animate-slide-up">
+            <div className="space-y-4 sm:space-y-6 md:space-y-8">
+              <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white leading-tight tracking-tight px-2">
                 Bringing Stories to Life
               </h2>
-              <p className="text-lg sm:text-xl md:text-2xl text-white/95 max-w-4xl mx-auto leading-relaxed font-light">
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/95 max-w-4xl mx-auto leading-relaxed font-light px-4">
                 From concept to creation, we craft visual narratives that
                 captivate, inspire, and drive results for brands that dare to be
                 different.
               </p>
             </div>
 
-            <div className="flex flex-col gap-3 sm:gap-6 justify-center items-center">
+            <div className="flex flex-col gap-3 sm:gap-4 md:gap-6 justify-center items-center px-4">
               <Button
                 asChild
                 size="lg"
-                className="bg-brand-orange hover:bg-brand-orange/90 text-white font-semibold px-5 sm:px-10 py-4 sm:py-7 text-sm sm:text-lg rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 w-full sm:w-auto"
+                className="bg-brand-orange hover:bg-brand-orange/90 text-white font-semibold px-6 sm:px-8 md:px-10 py-5 sm:py-6 md:py-7 text-sm sm:text-base md:text-lg rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 w-full sm:w-auto max-w-xs"
               >
-                <Link to="/work">
+                <Link to="/work" className="flex items-center justify-center">
                   View Our Work
                   <ChevronRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
                 </Link>
@@ -196,9 +196,9 @@ const Index = () => {
                 asChild
                 variant="outline"
                 size="lg"
-                className="border-2 border-white text-white hover:bg-white hover:text-black font-semibold px-5 sm:px-10 py-4 sm:py-7 text-sm sm:text-lg rounded-full backdrop-blur-sm bg-white/10 transition-all duration-300 transform hover:scale-105 w-full sm:w-auto"
+                className="border-2 border-white text-white hover:bg-white hover:text-black font-semibold px-6 sm:px-8 md:px-10 py-5 sm:py-6 md:py-7 text-sm sm:text-base md:text-lg rounded-full backdrop-blur-sm bg-white/10 transition-all duration-300 transform hover:scale-105 w-full sm:w-auto max-w-xs"
               >
-                <Link to="/about">Learn About Us</Link>
+                <Link to="/about" className="flex items-center justify-center">Learn About Us</Link>
               </Button>
             </div>
           </div>
@@ -206,13 +206,13 @@ const Index = () => {
       </section>
 
       {/* Video Preview Section */}
-      <section className="py-16 sm:py-20 bg-background">
+      <section className="py-12 sm:py-16 md:py-20 bg-background">
         <div className="container mx-auto px-4 sm:px-6">
-          <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 sm:mb-6">
+          <div className="text-center mb-8 sm:mb-12 md:mb-16">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-3 sm:mb-4 md:mb-6 px-2">
               Recent <span className="text-brand-orange">Work</span>
             </h2>
-            <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
               Get a taste of our creative storytelling with these featured
               projects
             </p>
@@ -255,11 +255,11 @@ const Index = () => {
                         />
                       </video>
                       <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors duration-300"></div>
-                      <div className="absolute bottom-4 left-4 text-white">
-                        <h3 className="font-bold text-lg">
+                      <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 text-white">
+                        <h3 className="font-bold text-base sm:text-lg">
                           Tech Startup Commercial
                         </h3>
-                        <p className="text-sm opacity-90">InnovateTech</p>
+                        <p className="text-xs sm:text-sm opacity-90">InnovateTech</p>
                       </div>
                     </div>
                   </div>
@@ -292,11 +292,11 @@ const Index = () => {
                         />
                       </video>
                       <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors duration-300"></div>
-                      <div className="absolute bottom-4 left-4 text-white">
-                        <h3 className="font-bold text-lg">
+                      <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 text-white">
+                        <h3 className="font-bold text-base sm:text-lg">
                           Fashion Brand Campaign
                         </h3>
-                        <p className="text-sm opacity-90">StyleForward</p>
+                        <p className="text-xs sm:text-sm opacity-90">StyleForward</p>
                       </div>
                     </div>
                   </div>
@@ -329,16 +329,16 @@ const Index = () => {
                         />
                       </video>
                       <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors duration-300"></div>
-                      <div className="absolute bottom-4 left-4 text-white">
-                        <h3 className="font-bold text-lg">Restaurant Promo</h3>
-                        <p className="text-sm opacity-90">Culinary Dreams</p>
+                      <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 text-white">
+                        <h3 className="font-bold text-base sm:text-lg">Restaurant Promo</h3>
+                        <p className="text-xs sm:text-sm opacity-90">Culinary Dreams</p>
                       </div>
                     </div>
                   </div>
                 </CarouselItem>
               </CarouselContent>
-              <CarouselPrevious className="-left-2 sm:-left-4 bg-white/80 border-white/30 hover:bg-white text-black" />
-              <CarouselNext className="-right-2 sm:-right-4 bg-white/80 border-white/30 hover:bg-white text-black" />
+              <CarouselPrevious className="-left-2 sm:-left-4 bg-white/80 border-white/30 hover:bg-white text-black h-8 w-8 sm:h-10 sm:w-10" />
+              <CarouselNext className="-right-2 sm:-right-4 bg-white/80 border-white/30 hover:bg-white text-black h-8 w-8 sm:h-10 sm:w-10" />
             </Carousel>
           </div>
 
@@ -450,13 +450,13 @@ const Index = () => {
             </div>
           </div>
 
-          <div className="text-center">
+          <div className="text-center px-4">
             <Button
               asChild
               size="lg"
-              className="bg-brand-orange hover:bg-brand-orange/90 text-white font-semibold px-6 sm:px-12 py-4 sm:py-6 text-sm sm:text-lg"
+              className="bg-brand-orange hover:bg-brand-orange/90 text-white font-semibold px-6 sm:px-8 md:px-12 py-4 sm:py-5 md:py-6 text-sm sm:text-base md:text-lg w-full sm:w-auto max-w-xs"
             >
-              <Link to="/work">
+              <Link to="/work" className="flex items-center justify-center">
                 See More Work
                 <ChevronRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
               </Link>
