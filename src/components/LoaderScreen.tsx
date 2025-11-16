@@ -38,14 +38,14 @@ const LoaderScreen: React.FC<LoaderScreenProps> = ({ onComplete }) => {
   }, [onComplete]);
 
   return (
-    <div className={`fixed inset-0 z-50 bg-gradient-to-b from-gray-800 to-gray-900 flex items-center justify-center overflow-hidden transition-transform duration-200 ${screenShake ? 'animate-shake' : ''}`}>
+    <div className={`fixed inset-0 z-50 bg-white flex items-center justify-center overflow-hidden transition-transform duration-200 ${screenShake ? 'animate-shake' : ''}`}>
       {/* Dust particles on impact */}
       {(stage === 2 || stage === 4 || stage === 6) && (
         <div className="absolute inset-0 pointer-events-none">
           {[...Array(8)].map((_, i) => (
             <div
               key={i}
-              className="absolute w-2 h-2 bg-gray-600 rounded-full opacity-60"
+              className="absolute w-2 h-2 bg-gray-400 rounded-full opacity-60"
               style={{
                 left: stage === 2 ? '35%' : stage === 4 ? '50%' : '65%',
                 top: '55%',
@@ -80,8 +80,8 @@ const LoaderScreen: React.FC<LoaderScreenProps> = ({ onComplete }) => {
               {/* Camera lens on L */}
               {stage >= 2 && (
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                  <div className="w-12 h-12 rounded-full bg-gray-900 border-4 border-gray-700 flex items-center justify-center shadow-lg animate-fade-in">
-                    <div className={`w-3 h-3 rounded-full ${stage >= 2 ? 'bg-orange-500 animate-blink' : 'bg-gray-600'}`} />
+                  <div className="w-12 h-12 rounded-full bg-white border-4 border-gray-300 flex items-center justify-center shadow-lg animate-fade-in">
+                    <div className={`w-3 h-3 rounded-full ${stage >= 2 ? 'bg-orange-500 animate-blink' : 'bg-gray-400'}`} />
                   </div>
                 </div>
               )}
@@ -124,13 +124,13 @@ const LoaderScreen: React.FC<LoaderScreenProps> = ({ onComplete }) => {
         ) : (
           // Merged card/logo
           <div className={`flex justify-center items-center transition-all duration-700 ${stage === 9 ? 'opacity-0 scale-110' : 'opacity-100'}`}>
-            <div className={`relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl p-12 border-4 border-gray-700 shadow-2xl transition-all duration-500 ${stage >= 7 ? 'scale-100' : 'scale-0'}`}>
+            <div className={`relative bg-white rounded-3xl p-12 border-4 border-gray-200 shadow-2xl transition-all duration-500 ${stage >= 7 ? 'scale-100' : 'scale-0'}`}>
               <div className="flex items-center gap-4">
                 <div className="relative">
                   <span className="text-8xl font-black" style={{ color: '#FF6B35' }}>L</span>
                   {/* Camera with pulse */}
                   <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                    <div className={`w-12 h-12 rounded-full bg-gray-900 border-4 border-gray-700 flex items-center justify-center shadow-lg ${stage >= 8 ? 'animate-pulse-ring' : ''}`}>
+                    <div className={`w-12 h-12 rounded-full bg-white border-4 border-gray-300 flex items-center justify-center shadow-lg ${stage >= 8 ? 'animate-pulse-ring' : ''}`}>
                       <div className={`w-3 h-3 rounded-full ${stage >= 8 ? 'bg-orange-500 animate-pulse-glow' : 'bg-orange-500'}`} />
                     </div>
                   </div>
@@ -142,7 +142,7 @@ const LoaderScreen: React.FC<LoaderScreenProps> = ({ onComplete }) => {
               {/* Light sweep effect */}
               {stage >= 8 && (
                 <div className="absolute inset-0 overflow-hidden rounded-2xl sm:rounded-3xl">
-                  <div className="w-20 sm:w-24 md:w-32 h-full bg-gradient-to-r from-transparent via-white/20 to-transparent animate-sweep" />
+                  <div className="w-20 sm:w-24 md:w-32 h-full bg-gradient-to-r from-transparent via-gray-200/50 to-transparent animate-sweep" />
                 </div>
               )}
             </div>
@@ -153,7 +153,7 @@ const LoaderScreen: React.FC<LoaderScreenProps> = ({ onComplete }) => {
       {/* Subtitle */}
       {stage >= 7 && stage < 9 && (
         <div className="absolute bottom-16 sm:bottom-20 left-0 right-0 text-center px-4">
-          <p className="text-lg sm:text-xl md:text-2xl text-gray-500 font-light animate-fade-in">
+          <p className="text-lg sm:text-xl md:text-2xl text-gray-600 font-light animate-fade-in">
             Love Regality Productions
           </p>
         </div>
