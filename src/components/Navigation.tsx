@@ -52,7 +52,7 @@ const Navigation = () => {
                 className={`text-lg font-medium transition-all duration-300 hover:scale-105 ${
                   isActive(item.path)
                     ? "text-orange-400"
-                    : "text-black hover:bg-gradient-to-r hover:from-brand-orange hover:via-brand-yellow hover:to-brand-green hover:bg-clip-text hover:text-transparent"
+                    : "text-black hover:bg-gradient-to-r hover:from-brand-orange  hover:bg-clip-text hover:text-transparent"
                 }`}
               >
                 {item.name}
@@ -82,7 +82,7 @@ const Navigation = () => {
                   className={`text-lg font-medium transition-all duration-300 animate-fade-in ${
                     isActive(item.path)
                       ? "text-orange-400"
-                      : "text-black hover:bg-gradient-to-r hover:from-brand-orange hover:via-brand-yellow hover:to-brand-green hover:bg-clip-text hover:text-transparent"
+                      : "text-black   hover:bg-clip-text hover:text-transparent"
                   }`}
                   style={{
                     animationDelay: `${index * 0.1}s`,
