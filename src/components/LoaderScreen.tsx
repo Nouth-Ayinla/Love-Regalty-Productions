@@ -5,169 +5,247 @@ interface LoaderScreenProps {
 }
 
 const LoaderScreen: React.FC<LoaderScreenProps> = ({ onComplete }) => {
-  const [isVisible, setIsVisible] = useState(true);
-  const [animationStage, setAnimationStage] = useState(0);
+  const [stage, setStage] = useState(0);
+  const [screenShake, setScreenShake] = useState(false);
 
   useEffect(() => {
-    // Animation sequence
-    const stage1Timer = setTimeout(() => setAnimationStage(1), 100);
-    const stage2Timer = setTimeout(() => setAnimationStage(2), 600);
-    const stage3Timer = setTimeout(() => setAnimationStage(3), 1200);
-    const stage4Timer = setTimeout(() => setAnimationStage(4), 1800);
+    const timers = [
+      setTimeout(() => setStage(1), 200),      // L drops
+      setTimeout(() => {
+        setScreenShake(true);
+        setTimeout(() => setScreenShake(false), 200);
+      }, 800),
+      setTimeout(() => setStage(2), 1000),     // L landed
+      setTimeout(() => setStage(3), 1400),     // R drops
+      setTimeout(() => {
+        setScreenShake(true);
+        setTimeout(() => setScreenShake(false), 200);
+      }, 2000),
+      setTimeout(() => setStage(4), 2200),     // R landed
+      setTimeout(() => setStage(5), 2600),     // P drops
+      setTimeout(() => {
+        setScreenShake(true);
+        setTimeout(() => setScreenShake(false), 200);
+      }, 3200),
+      setTimeout(() => setStage(6), 3400),     // P landed
+      setTimeout(() => setStage(7), 3800),     // Merge to card
+      setTimeout(() => setStage(8), 4400),     // Pulse
+      setTimeout(() => setStage(9), 5000),     // Fade out
+      setTimeout(onComplete, 5500)
+    ];
 
-    // Complete animation timing
-    const completeTimer = setTimeout(() => {
-      setIsVisible(false);
-      setTimeout(onComplete, 300);
-    }, 3500);
-
-    return () => {
-      clearTimeout(stage1Timer);
-      clearTimeout(stage2Timer);
-      clearTimeout(stage3Timer);
-      clearTimeout(stage4Timer);
-      clearTimeout(completeTimer);
-    };
+    return () => timers.forEach(clearTimeout);
   }, [onComplete]);
 
-  if (!isVisible) return null;
-
   return (
-    <div className="fixed inset-0 z-50 bg-background flex items-center justify-center overflow-hidden">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        {[...Array(15)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-2 h-2 rounded-full bg-gradient-to-r from-cyan-500/20 to-purple-500/20"
-            style={{
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-              animation: `floatUp ${4 + Math.random() * 4}s ease-in-out infinite`,
-              animationDelay: `${Math.random() * 2}s`,
-              transform: 'translateZ(0)'
-            }}
-          />
-        ))}
-      </div>
-
-      {/* Colorful gradient border - Fixed CSS conflict */}
-      <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-orange-500 to-green-500 animate-[gradientShift_8s_ease-in-out_infinite]">
-        <div className="absolute inset-4 bg-background rounded-lg"></div>
-      </div>
-      
-      {/* Content */}
-      <div className="relative z-10 w-full h-full flex flex-col items-center justify-center p-4 md:p-8">
-        <div className="text-center w-full max-w-6xl mx-auto px-4">
-          {/* Main Text with enhanced animation */}
-          <div className="mb-6 md:mb-12 flex flex-col items-center">
-            <div className={`${animationStage >= 1 ? 'animate-fade-in-up' : 'opacity-0 translate-y-10'}`}>
-              <span className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold bg-gradient-to-r from-blue-500 via-green-500 to-orange-500 bg-clip-text text-transparent">
-                Hello.
-              </span>
-            </div>
-            
-            <div className={`mt-4 ${animationStage >= 2 ? 'animate-fade-in-up' : 'opacity-0 translate-y-10'}`} style={{ animationDelay: '0.1s' }}>
-              <span className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-normal text-foreground">
-                We're
-              </span>
-            </div>
-          </div>
-          
-          <div className="mb-6 md:mb-12">
-            <div className={`${animationStage >= 3 ? 'animate-fade-in-up' : 'opacity-0 translate-y-10'}`} style={{ animationDelay: '0.2s' }}>
-              <span className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold bg-gradient-to-r from-blue-500 via-green-500 to-orange-500 bg-clip-text text-transparent">
-                Love Regality
-              </span>
-            </div>
-          </div>
-          
-          <div>
-            <div className={`${animationStage >= 4 ? 'animate-fade-in-up' : 'opacity-0 translate-y-10'}`} style={{ animationDelay: '0.3s' }}>
-              <span className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-normal text-foreground">
-                Productions
-              </span>
-            </div>
-            <div className={`inline-block ${animationStage >= 4 ? 'animate-ping-slow' : 'opacity-0'}`} style={{ animationDelay: '0.4s' }}>
-              <span className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold bg-gradient-to-r from-orange-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent">
-                .
-              </span>
-            </div>
-          </div>
-          
-          {/* Animated Dots similar to Index page */}
-          <div className={`flex justify-center mt-10 md:mt-16 ${animationStage >= 4 ? 'animate-fade-in' : 'opacity-0'}`}>
-            <div className="flex space-x-3 md:space-x-4 p-4 md:p-6 rounded-full bg-background/20 backdrop-blur-sm border border-border/20">
-              {[...Array(5)].map((_, i) => (
-                <div
-                  key={i}
-                  className="w-2 h-2 md:w-3 md:h-3 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full"
-                  style={{
-                    animation: `pulse 1.5s infinite`,
-                    animationDelay: `${i * 0.2}s`
-                  }}
-                />
-              ))}
-            </div>
-          </div>
-          
-          {/* Subtitle */}
-          <div className={`mt-8 md:mt-12 transition-all duration-1000 delay-1000 ease-out ${animationStage >= 4 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-muted-foreground font-light">
-              Crafting exceptional visual stories
-            </p>
-          </div>
+    <div className={`fixed inset-0 z-50 bg-gradient-to-b from-gray-800 to-gray-900 flex items-center justify-center overflow-hidden transition-transform duration-200 ${screenShake ? 'animate-shake' : ''}`}>
+      {/* Dust particles on impact */}
+      {(stage === 2 || stage === 4 || stage === 6) && (
+        <div className="absolute inset-0 pointer-events-none">
+          {[...Array(8)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-2 h-2 bg-gray-600 rounded-full opacity-60"
+              style={{
+                left: stage === 2 ? '35%' : stage === 4 ? '50%' : '65%',
+                top: '55%',
+                animation: `dustParticle 0.6s ease-out forwards`,
+                animationDelay: `${i * 0.05}s`,
+                transform: `rotate(${i * 45}deg)`
+              }}
+            />
+          ))}
         </div>
+      )}
+
+      <div className="relative w-full max-w-2xl mx-auto px-4">
+        {stage < 7 ? (
+          // Individual letters falling
+          <div className="flex justify-center items-end gap-8 h-64">
+            {/* Letter L */}
+            <div className="relative flex flex-col items-center">
+              <div
+                className={`text-9xl font-black transition-all duration-500 ${
+                  stage >= 1 ? 'opacity-100' : 'opacity-0'
+                }`}
+                style={{
+                  color: '#FF6B35',
+                  transform: stage === 1 ? 'translateY(-400px)' : stage >= 2 ? 'translateY(0)' : 'translateY(-400px)',
+                  transition: stage === 1 ? 'transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)' : 'none',
+                  textShadow: stage >= 2 ? '0 8px 20px rgba(255, 107, 53, 0.3)' : 'none'
+                }}
+              >
+                L
+              </div>
+              {/* Camera lens on L */}
+              {stage >= 2 && (
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                  <div className="w-12 h-12 rounded-full bg-gray-900 border-4 border-gray-700 flex items-center justify-center shadow-lg animate-fade-in">
+                    <div className={`w-3 h-3 rounded-full ${stage >= 2 ? 'bg-orange-500 animate-blink' : 'bg-gray-600'}`} />
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Letter R */}
+            {stage >= 3 && (
+              <div className="relative">
+                <div
+                  className="text-9xl font-black"
+                  style={{
+                    color: '#4A90E2',
+                    transform: stage === 3 ? 'translateY(-400px)' : stage >= 4 ? 'translateY(0)' : 'translateY(-400px)',
+                    transition: stage === 3 ? 'transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)' : 'none',
+                    textShadow: stage >= 4 ? '0 8px 20px rgba(74, 144, 226, 0.3)' : 'none'
+                  }}
+                >
+                  R
+                </div>
+              </div>
+            )}
+
+            {/* Letter P */}
+            {stage >= 5 && (
+              <div className="relative">
+                <div
+                  className="text-9xl font-black"
+                  style={{
+                    color: '#50C878',
+                    transform: stage === 5 ? 'translateY(-400px)' : stage >= 6 ? 'translateY(0)' : 'translateY(-400px)',
+                    transition: stage === 5 ? 'transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)' : 'none',
+                    textShadow: stage >= 6 ? '0 8px 20px rgba(80, 200, 120, 0.3)' : 'none'
+                  }}
+                >
+                  P
+                </div>
+              </div>
+            )}
+          </div>
+        ) : (
+          // Merged card/logo
+          <div className={`flex justify-center items-center transition-all duration-700 ${stage === 9 ? 'opacity-0 scale-110' : 'opacity-100'}`}>
+            <div className={`relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl p-12 border-4 border-gray-700 shadow-2xl transition-all duration-500 ${stage >= 7 ? 'scale-100' : 'scale-0'}`}>
+              <div className="flex items-center gap-4">
+                <div className="relative">
+                  <span className="text-8xl font-black" style={{ color: '#FF6B35' }}>L</span>
+                  {/* Camera with pulse */}
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                    <div className={`w-12 h-12 rounded-full bg-gray-900 border-4 border-gray-700 flex items-center justify-center shadow-lg ${stage >= 8 ? 'animate-pulse-ring' : ''}`}>
+                      <div className={`w-3 h-3 rounded-full ${stage >= 8 ? 'bg-orange-500 animate-pulse-glow' : 'bg-orange-500'}`} />
+                    </div>
+                  </div>
+                </div>
+                <span className="text-8xl font-black" style={{ color: '#4A90E2' }}>R</span>
+                <span className="text-8xl font-black" style={{ color: '#50C878' }}>P</span>
+              </div>
+              
+              {/* Light sweep effect */}
+              {stage >= 8 && (
+                <div className="absolute inset-0 overflow-hidden rounded-3xl">
+                  <div className="w-32 h-full bg-gradient-to-r from-transparent via-white/20 to-transparent animate-sweep" />
+                </div>
+              )}
+            </div>
+          </div>
+        )}
       </div>
 
-      {/* Add custom animation styles */}
+      {/* Subtitle */}
+      {stage >= 7 && stage < 9 && (
+        <div className="absolute bottom-20 left-0 right-0 text-center">
+          <p className="text-2xl text-gray-400 font-light animate-fade-in">
+            Love Regality Productions
+          </p>
+        </div>
+      )}
+
       <style>{`
-        @keyframes fadeInUp {
+        @keyframes shake {
+          0%, 100% { transform: translateX(0); }
+          25% { transform: translateX(-4px); }
+          75% { transform: translateX(4px); }
+        }
+        @keyframes dustParticle {
+          0% {
+            transform: translate(0, 0) scale(1);
+            opacity: 0.6;
+          }
+          100% {
+            transform: translate(var(--tx, 40px), var(--ty, -40px)) scale(0);
+            opacity: 0;
+          }
+        }
+        @keyframes blink {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.3; }
+        }
+        @keyframes pulseGlow {
+          0%, 100% {
+            box-shadow: 0 0 10px rgba(255, 107, 53, 0.8),
+                        0 0 20px rgba(255, 107, 53, 0.6),
+                        0 0 30px rgba(255, 107, 53, 0.4);
+          }
+          50% {
+            box-shadow: 0 0 20px rgba(255, 107, 53, 1),
+                        0 0 40px rgba(255, 107, 53, 0.8),
+                        0 0 60px rgba(255, 107, 53, 0.6);
+          }
+        }
+        @keyframes pulseRing {
+          0% {
+            box-shadow: 0 0 0 0 rgba(255, 107, 53, 0.7);
+          }
+          70% {
+            box-shadow: 0 0 0 20px rgba(255, 107, 53, 0);
+          }
+          100% {
+            box-shadow: 0 0 0 0 rgba(255, 107, 53, 0);
+          }
+        }
+        @keyframes sweep {
+          0% {
+            transform: translateX(-100%);
+          }
+          100% {
+            transform: translateX(500%);
+          }
+        }
+        @keyframes fadeIn {
           from {
             opacity: 0;
-            transform: translateY(30px);
+            transform: translateY(10px);
           }
           to {
             opacity: 1;
             transform: translateY(0);
           }
         }
-        @keyframes pulse {
-          0%, 100% {
-            opacity: 0.4;
-            transform: scale(0.8);
-          }
-          50% {
-            opacity: 1;
-            transform: scale(1.2);
-          }
+        .animate-shake {
+          animation: shake 0.2s ease-in-out;
         }
-        @keyframes floatUp {
-          0% {
-            transform: translateY(100vh) rotate(0deg);
-            opacity: 0.7;
-          }
-          100% {
-            transform: translateY(-100px) rotate(360deg);
-            opacity: 0;
-          }
+        .animate-blink {
+          animation: blink 1s ease-in-out infinite;
         }
-        @keyframes pingSlow {
-          0% {
-            transform: scale(1);
-            opacity: 1;
-          }
-          75%, 100% {
-            transform: scale(2);
-            opacity: 0;
-          }
+        .animate-pulse-glow {
+          animation: pulseGlow 2s ease-in-out infinite;
         }
-        .animate-fade-in-up {
-          animation: fadeInUp 0.8s ease-out forwards;
+        .animate-pulse-ring {
+          animation: pulseRing 2s ease-out infinite;
         }
-        .animate-ping-slow {
-          animation: pingSlow 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+        .animate-sweep {
+          animation: sweep 1.5s ease-in-out;
         }
+        .animate-fade-in {
+          animation: fadeIn 0.8s ease-out forwards;
+        }
+        .dustParticle:nth-child(1) { --tx: 40px; --ty: -40px; }
+        .dustParticle:nth-child(2) { --tx: -40px; --ty: -40px; }
+        .dustParticle:nth-child(3) { --tx: 40px; --ty: 40px; }
+        .dustParticle:nth-child(4) { --tx: -40px; --ty: 40px; }
+        .dustParticle:nth-child(5) { --tx: 60px; --ty: -20px; }
+        .dustParticle:nth-child(6) { --tx: -60px; --ty: -20px; }
+        .dustParticle:nth-child(7) { --tx: 20px; --ty: -60px; }
+        .dustParticle:nth-child(8) { --tx: -20px; --ty: -60px; }
       `}</style>
     </div>
   );

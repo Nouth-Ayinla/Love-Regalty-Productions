@@ -16,42 +16,56 @@ const Work = () => {
       id: 1,
       title: "Tech Startup Commercial",
       client: "InnovateTech",
-      thumbnail: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&h=450&fit=crop",
-      videoUrl: "https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4",
-      description: "A dynamic commercial showcasing innovative technology solutions"
+      thumbnail:
+        "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&h=450&fit=crop",
+      videoUrl:
+        "https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4",
+      description:
+        "A dynamic commercial showcasing innovative technology solutions",
     },
     {
       id: 2,
       title: "Fashion Brand Campaign",
       client: "StyleForward",
-      thumbnail: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=450&fit=crop",
-      videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-      description: "High-fashion commercial with stunning visuals and storytelling"
+      thumbnail:
+        "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=450&fit=crop",
+      videoUrl:
+        "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+      description:
+        "High-fashion commercial with stunning visuals and storytelling",
     },
     {
       id: 3,
       title: "Restaurant Promo",
       client: "Culinary Dreams",
-      thumbnail: "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800&h=450&fit=crop",
-      videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
-      description: "Mouth-watering food commercial that captures culinary excellence"
+      thumbnail:
+        "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800&h=450&fit=crop",
+      videoUrl:
+        "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+      description:
+        "Mouth-watering food commercial that captures culinary excellence",
     },
     {
       id: 4,
       title: "Corporate Training Video",
       client: "GlobalCorp",
-      thumbnail: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800&h=450&fit=crop",
-      videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-      description: "Professional training video with clear messaging and engagement"
+      thumbnail:
+        "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800&h=450&fit=crop",
+      videoUrl:
+        "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+      description:
+        "Professional training video with clear messaging and engagement",
     },
     {
       id: 5,
       title: "Non-Profit Campaign",
       client: "Hope Foundation",
-      thumbnail: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=800&h=450&fit=crop",
-      videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
-      description: "Emotionally powerful campaign for social impact"
-    }
+      thumbnail:
+        "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=800&h=450&fit=crop",
+      videoUrl:
+        "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+      description: "Emotionally powerful campaign for social impact",
+    },
   ];
 
   const nextSlide = () => {
@@ -76,13 +90,17 @@ const Work = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
-      
+
       <main className="pt-24">
         {/* Header Section */}
         <section className="py-16">
           <div className="container mx-auto px-6">
             <div className="flex items-center justify-between mb-8">
-              <Button asChild variant="outline" className="flex items-center gap-2">
+              <Button
+                asChild
+                variant="outline"
+                className="flex items-center gap-2"
+              >
                 <Link to="/">
                   <Home className="h-4 w-4" />
                   <span className="text-muted-foreground">Home</span>
@@ -90,11 +108,12 @@ const Work = () => {
               </Button>
             </div>
             <div className="text-center">
-              <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-orange-400 via-blue-400 to-green-400 bg-clip-text text-transparent">
+              <h1 className="text-5xl md:text-6xl font-bold mb-6 text-orange-400">
                 Our Work
               </h1>
               <p className="text-xl max-w-2xl mx-auto text-muted-foreground">
-                Explore our portfolio of commercials and video content that have helped brands connect with their audiences.
+                Explore our portfolio of commercials and video content that have
+                helped brands connect with their audiences.
               </p>
             </div>
           </div>
@@ -134,17 +153,19 @@ const Work = () => {
                             className="bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/30 text-white"
                           >
                             <Play className="h-8 w-8 mr-2" />
-                            <span className="bg-gradient-to-r from-blue-400 via-green-400 to-orange-400 bg-clip-text text-transparent">Play Video</span>
+                            <span className="text-lg font-semibold">
+                              Play Video
+                            </span>
                           </Button>
                         </div>
                       </>
                     )}
                   </div>
-                  
+
                   <div className="p-8">
                     <div className="flex justify-between items-start mb-4">
                       <div>
-                        <h3 className="text-2xl font-bold mb-2 bg-gradient-to-r from-orange-400 via-blue-400 to-green-400 bg-clip-text text-transparent">
+                        <h3 className="text-2xl font-bold mb-1">
                           {videos[currentSlide].title}
                         </h3>
                         <p className="text-muted-foreground font-semibold">
@@ -168,7 +189,7 @@ const Work = () => {
               >
                 <ChevronLeft className="h-4 w-4 sm:h-6 sm:w-6" />
               </Button>
-              
+
               <Button
                 variant="outline"
                 size="icon"
@@ -210,7 +231,9 @@ const Work = () => {
                   key={index}
                   onClick={() => goToSlide(index)}
                   className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    index === currentSlide ? "bg-brand-orange" : "bg-muted-foreground/30"
+                    index === currentSlide
+                      ? "bg-brand-orange"
+                      : "bg-muted-foreground/30"
                   }`}
                 />
               ))}

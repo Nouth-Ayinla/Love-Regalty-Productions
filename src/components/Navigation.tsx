@@ -24,14 +24,20 @@ const Navigation = () => {
   }, []);
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-white/10 border-b border-white/20 shadow-lg transition-all duration-700 ease-out ${
-      isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
-    }`}>
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-white/10 border-b border-white/20 shadow-lg transition-all duration-700 ease-out ${
+        isVisible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
+      }`}
+    >
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3 group">
-            <img src={logo} alt="Love Regality Productions" className="w-12 h-12 transition-transform duration-300 group-hover:scale-110" />
+            <img
+              src={logo}
+              alt="Love Regality Productions"
+              className="w-12 h-12 transition-transform duration-300 group-hover:scale-110"
+            />
             <span className="text-xl font-bold text-foreground">
               Love Regality Productions
             </span>
@@ -44,13 +50,10 @@ const Navigation = () => {
                 key={item.name}
                 to={item.path}
                 className={`text-lg font-medium transition-all duration-300 hover:scale-105 ${
-                  isActive(item.path) 
-                    ? "bg-gradient-to-r from-orange-400 via-blue-400 to-green-400 bg-clip-text text-transparent" 
+                  isActive(item.path)
+                    ? "text-orange-400"
                     : "text-black hover:bg-gradient-to-r hover:from-brand-orange hover:via-brand-yellow hover:to-brand-green hover:bg-clip-text hover:text-transparent"
                 }`}
-                style={{
-                  animationDelay: `${index * 0.1}s`
-                }}
               >
                 {item.name}
               </Link>
@@ -76,13 +79,13 @@ const Navigation = () => {
                 <Link
                   key={item.name}
                   to={item.path}
-                   className={`text-lg font-medium transition-all duration-300 animate-fade-in ${
-                     isActive(item.path) 
-                       ? "bg-gradient-to-r from-orange-400 via-blue-400 to-green-400 bg-clip-text text-transparent" 
-                       : "text-black hover:bg-gradient-to-r hover:from-brand-orange hover:via-brand-yellow hover:to-brand-green hover:bg-clip-text hover:text-transparent"
-                   }`}
+                  className={`text-lg font-medium transition-all duration-300 animate-fade-in ${
+                    isActive(item.path)
+                      ? "text-orange-400"
+                      : "text-black hover:bg-gradient-to-r hover:from-brand-orange hover:via-brand-yellow hover:to-brand-green hover:bg-clip-text hover:text-transparent"
+                  }`}
                   style={{
-                    animationDelay: `${index * 0.1}s`
+                    animationDelay: `${index * 0.1}s`,
                   }}
                   onClick={() => setIsOpen(false)}
                 >
