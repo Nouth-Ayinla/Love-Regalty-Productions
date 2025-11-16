@@ -227,7 +227,7 @@ const LoaderScreen: React.FC<LoaderScreenProps> = ({ onComplete }) => {
       {/* Subtitle */}
       {stage >= 7 && stage < 9 && (
         <div className="absolute bottom-16 sm:bottom-20 left-0 right-0 text-center px-4">
-          <p className="text-lg sm:text-xl md:text-2xl text-gray-400 font-light animate-fade-in">
+          <p className="text-lg sm:text-xl md:text-2xl text-gray-500 font-light animate-fade-in">
             Love Regality Productions
           </p>
         </div>
