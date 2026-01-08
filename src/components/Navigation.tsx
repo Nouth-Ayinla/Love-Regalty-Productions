@@ -49,10 +49,8 @@ const Navigation = () => {
               <Link
                 key={item.name}
                 to={item.path}
-                className={`text-lg font-medium transition-all duration-300 hover:scale-105 ${
-                  isActive(item.path)
-                    ? "text-orange-400"
-                    : "text-black hover:bg-gradient-to-r hover:from-brand-orange  hover:bg-clip-text hover:text-transparent"
+                className={`text-lg font-medium transition-all duration-300 ${
+                  isActive(item.path) ? "text-orange-400" : "text-black"
                 }`}
               >
                 {item.name}
@@ -80,9 +78,7 @@ const Navigation = () => {
                   key={item.name}
                   to={item.path}
                   className={`text-lg font-medium transition-all duration-300 ${
-                    isActive(item.path)
-                      ? "text-orange-400"
-                      : "text-black   hover:bg-clip-text hover:text-transparent"
+                    isActive(item.path) ? "text-orange-400" : "text-black"
                   }`}
                   onClick={() => setIsOpen(false)}
                 >
