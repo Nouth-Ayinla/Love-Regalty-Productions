@@ -26,7 +26,7 @@ const Navigation = () => {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-white/10 border-b border-white/20 shadow-lg transition-all duration-700 ease-out ${
-        isVisible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
+        isVisible ? "translate-y-0" : "-translate-y-full"
       }`}
     >
       <div className="container mx-auto px-6 py-4">
@@ -79,14 +79,11 @@ const Navigation = () => {
                 <Link
                   key={item.name}
                   to={item.path}
-                  className={`text-lg font-medium transition-all duration-300 animate-fade-in ${
+                  className={`text-lg font-medium transition-all duration-300 ${
                     isActive(item.path)
                       ? "text-orange-400"
                       : "text-black   hover:bg-clip-text hover:text-transparent"
                   }`}
-                  style={{
-                    animationDelay: `${index * 0.1}s`,
-                  }}
                   onClick={() => setIsOpen(false)}
                 >
                   {item.name}
