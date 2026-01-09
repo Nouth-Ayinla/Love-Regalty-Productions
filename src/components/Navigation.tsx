@@ -56,6 +56,19 @@ const Navigation = () => {
                 {item.name}
               </Link>
             ))}
+            {/* Auth links */}
+            <Link
+              to="/auth?tab=sign-in"
+              className="text-lg font-medium text-black"
+            >
+              Sign in
+            </Link>
+            <Link
+              to="/auth?tab=sign-up"
+              className="px-4 py-2 rounded-full bg-brand-orange text-white font-medium"
+            >
+              Sign up
+            </Link>
           </div>
 
           {/* Mobile Menu Button - Fixed visibility */}
@@ -85,6 +98,20 @@ const Navigation = () => {
                   {item.name}
                 </Link>
               ))}
+              <Link
+                to="/auth?tab=sign-in"
+                className="text-lg font-medium text-black"
+                onClick={() => setIsOpen(false)}
+              >
+                Sign in
+              </Link>
+              <Link
+                to="/auth?tab=sign-up"
+                className="px-4 py-2 rounded-full bg-brand-orange text-white font-medium text-center"
+                onClick={() => setIsOpen(false)}
+              >
+                Sign up
+              </Link>
             </div>
           </div>
         )}
