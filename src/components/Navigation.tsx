@@ -36,7 +36,7 @@ const Navigation = () => {
             <img
               src={logo}
               alt="Love Regality Productions"
-              className="w-12 h-12 transition-transform duration-300 group-hover:scale-110"
+              className="w-16 h-16 transition-transform duration-300 group-hover:scale-105"
             />
             <span className="text-xl font-bold text-foreground">
               Love Regality Productions

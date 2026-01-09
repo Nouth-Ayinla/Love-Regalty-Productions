@@ -25,7 +25,7 @@ const Auth = () => {
           <img
             src={logo}
             alt="Love Regality Productions"
-            className="h-28 w-28 rounded-md"
+            className="h-36 w-36 rounded-full shadow-xl"
           />
 
           <h2 className="mt-6 text-4xl font-extrabold text-white">
@@ -59,17 +59,16 @@ const Auth = () => {
 
       {/* Mobile brand header */}
       <div className="lg:hidden bg-brand-orange text-center py-6 relative overflow-hidden">
-        <div className="mx-auto bg-white rounded-full p-2 w-20 h-20 flex items-center justify-center z-10">
+        <div className="mx-auto bg-white rounded-full p-3 w-24 h-24 flex items-center justify-center z-10 shadow-md">
           <img
             src={logo}
             alt="Love Regality Productions"
-            className="h-16 w-16 object-contain"
+            className="h-20 w-20 object-contain"
           />
         </div>
         <h2 className="mt-3 text-2xl font-bold text-white">
           Love Regality Productions
         </h2>
-        <p className="text-sm text-white/90 mt-1">Welcome!</p>
 
         <svg
           className="absolute left-0 bottom-0 w-full"
